@@ -1,7 +1,8 @@
 import 'dotenv/config';
 import express,{Request,Response} from 'express';
 import {json} from 'body-parser';
-
+import {validateAppToken} from './controllers/auth';
+import routes from './routes/main';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -13,11 +14,14 @@ app.get('/',(req:Request,res:Response)=>{
     res.send('Health check');
 });
 
-// Fun check
-app.get('/ping',(req:Request,res:Response)=>{
-    res.send('pong');
-});
+// Auth middleware
+app.use(validateAppToken);
 
+// Routes
+routes.forEach((route) => {
+    app.use(route.path, route.router);
+  });
+  
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
 })

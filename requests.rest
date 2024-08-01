@@ -1,0 +1,9 @@
+### ----------------  ----------------
+post http://localhost:8080/session/new-session
+content-type: application/json
+db192eh193rg7234gf: cn1293rh21038dh0293hrt0f92hc
+
+{   
+    
+}
+
