@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "build": "tsc",
-    "serve": "node dist/server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "serve": "node dist/index.js",
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "@types/node": "^22.0.2",
