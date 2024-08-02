@@ -1,25 +1,24 @@
 import { Request,Response,NextFunction } from "express";
 import { errorHandler } from "./error";
 import { HttpStatusCodes } from "../constants/httpStatusCodes";
+import { severityLevels } from "../constants/sevirityLevels";
+import { userErrors } from "../constants/ErrorLogs";
 
 const validateAppToken = (req:Request,res:Response,next:NextFunction)=>{
     try {
-        console.log(1);
-        
         const {token} = req.headers;
         
-        
         if(token !== process.env.APP_TOKEN){
-            console.log(2);
-            throw new Error('Unauthorized');
+            throw{
+                statusCode:HttpStatusCodes.UNAUTHORIZED,
+                clientFacingMessage:userErrors.USER_NOT_AUTHORIZED,
+                log: `${userErrors.USER_NOT_AUTHORIZED} with token: ${token}`,
+                severityLevel:severityLevels.WARN
+            }
         }
-        
-        console.log(3);
         return next();
     } catch (error) {
-        console.log(4);
-        
-       return errorHandler(res, error, 'validateAppToken', HttpStatusCodes.UNAUTHORIZED);
+       return errorHandler(res, error, 'validateAppToken');
     }
 }
 

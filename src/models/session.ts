@@ -2,6 +2,11 @@ import Sequelize from "sequelize";
 import sequelizeConnection from "../config/sequelize";
 
 const Session = sequelizeConnection.define('session', {
+    id:{
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     token: {
       type: Sequelize.STRING,
       allowNull: false
@@ -13,6 +18,10 @@ const Session = sequelizeConnection.define('session', {
     currentCredits:{
         type:Sequelize.INTEGER,
         allowNull:false
+    },
+    cashOutCredits:{
+        type:Sequelize.INTEGER,
+        allowNull:true
     },
     isActive:{
         type:Sequelize.BOOLEAN,

@@ -24,6 +24,32 @@ const creatNewSession = async (req: Request, res: Response,next:NextFunction) =>
     }
 }
 
+const updateSessionAfterSpin = async (req:Request,res:Response,next:NextFunction)=>{
+    const {session, reward} = res.locals;
+        try {
+            const currentCredits = session?.currentCredits - 1 + reward;
+            const isActive = currentCredits > 0;
+
+            await db.Session.update({
+                currentCredits,
+                isActive
+            },{
+                where:{
+                    token:session.token
+                }
+            });
+    
+            res.locals.session = {
+                ...session,
+                currentCredits,
+                isActive
+            }
+            return next();
+        } catch (error) {
+            return errorHandler(res, error, 'updateSession');
+        }
+}
+
 const normalizeSessionForResponse = (req:Request,res:Response,next:NextFunction)=>{
     try {
         const {session} = res.locals;
@@ -60,7 +86,6 @@ const obtainSession = async (req:Request,res:Response,next:NextFunction)=>{
               };
         }
 
-        return res.json(session);
         res.locals.session = session.toJSON();
         return next();
     } catch (error) {
@@ -68,8 +93,56 @@ const obtainSession = async (req:Request,res:Response,next:NextFunction)=>{
     }
 }
 
+const cashOutSession = async (req:Request,res:Response,next:NextFunction)=>{
+    const {session} = res.locals;
+    try {
+        await db.Session.update({
+            isActive:false,
+            cashOutCredits:session.currentCredits,
+            currentCredits:0
+        },{
+            where:{
+                token:session.token
+            }
+        });
+
+        res.locals.session = {
+            ...session,
+            isActive:false
+        }
+        res.locals.message = 'Session cashed out successfully';
+        res.locals.data = {
+            token:session.token,
+            prize:session.currentCredits
+        }
+        return next();
+    } catch (error) {
+        return errorHandler(res, error, 'cashOutSession');
+    }
+}
+
+const checkIfSessionIsActive = (req:Request,res:Response,next:NextFunction)=>{
+    const {session} = res.locals;
+    try {
+        if(!session.isActive){
+            throw {
+                statusCode: HttpStatusCodes.FORBIDDEN,
+                log: `${sessionErrors.SESSION_NOT_ACTIVE} with token: ${session.token}`,
+                clientFacingMessage: sessionErrors.SESSION_NOT_ACTIVE,
+                severityLevel: severityLevels.ERROR
+        }
+    }
+        return next();
+    } catch (error) {
+        return errorHandler(res, error, 'checkIfSessionIsActive');
+    }
+}
+
 export {
     creatNewSession,
     normalizeSessionForResponse,
-    obtainSession
+    checkIfSessionIsActive,
+    obtainSession,
+    updateSessionAfterSpin,
+    cashOutSession
 }

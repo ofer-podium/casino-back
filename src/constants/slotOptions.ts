@@ -1,20 +1,8 @@
-const SLOT_OPTIONS = {
-    CHERRY: {
-        name: 'Cherry',
-        reward: 10
-    },
-    LEMON: {
-        name: 'Lemon',
-        reward: 20
-    },
-    ORANGE: {
-        name: 'Orange',
-        reward: 30
-    },
-    WATERMELON: {
-        name: 'Watermelon',
-        reward: 40
-    }
-};
+export type SlotKey = 'C' | 'L' | 'O' | 'W';
 
-export default SLOT_OPTIONS;
+export const SLOT_OPTIONS: Record<SlotKey, { name: string; reward: number }> = {
+    C: { name: 'Cherry', reward: 10 },
+    L: { name: 'Lemon', reward: 20 },
+    O: { name: 'Orange', reward: 30 },
+    W: { name: 'Watermelon', reward: 40 }
+};

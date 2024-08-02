@@ -6,11 +6,12 @@ import { errorHandler } from '../controllers/error';
 
 const inspectObtainSessionInput = (req:Request, res:Response, next:NextFunction) =>{
     try {
+      
       const schema = Joi.object({
-        token: Joi.number().required(),
+        token: Joi.string().required(),
       }).unknown(true);
   
-      const { error } = schema.validate(req.body);
+      const { error } = schema.validate(req.params);
   
       if (error) {
         throw {

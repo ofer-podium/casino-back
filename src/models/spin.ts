@@ -2,9 +2,14 @@ import Sequelize from "sequelize";
 import sequelizeConnection from "../config/sequelize";
 
 const Spin = sequelizeConnection.define('spin', {
-    spin: {
-      type: Sequelize.INTEGER,
-      allowNull: false
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    spin:{
+        type:Sequelize.STRING,
+        allowNull:false
     },
     result:{
         type:Sequelize.STRING,
