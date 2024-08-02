@@ -1,22 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response } from "express";
+import { HttpStatusCodes } from "../constants/httpStatusCodes";
 
-const errorHandler = (res: Response, error: unknown, triggeringFunction:string, statusCode:number = 500) => {
-    console.log('Error Handler');
-    
-    if (error instanceof Error) {
-        console.log(`Error in ${triggeringFunction}: `, error);
-        res.status(statusCode).json({ error: error?.message });
-    }
-    
-    if (typeof error === 'string') {
-        console.log(`Error in ${triggeringFunction}: `, error);
-        res.status(statusCode).json({ error });
-    }
+const errorHandler = (res: Response, error: any, triggeringFunction:string) => {
+    console.error(`Error in ${triggeringFunction}:`, error);
 
-    console.log(`Error in ${triggeringFunction}: `, error);
-    res.status(statusCode).json({ error: 'Internal Server Error' });
+    res.status(error?.statusCode || HttpStatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: error?.clientFacingMessage ||  'Internal server error',
+      });
 }
 
 export {
     errorHandler
 }
+
