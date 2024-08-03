@@ -43,8 +43,8 @@ The Bellagio Casino Backend leverages a modern tech stack to ensure a high-quali
 
 ### Code Structure and Maintainability
 
-#### Component-Based Architecture
-Our application leverages a component-based architecture, which allows for modular and reusable code. Each functionality is encapsulated in a component, making it easy to manage and update. This approach enhances maintainability and scalability, as components can be independently developed and tested.
+#### Reusable Functions and Middleware
+Our application leverages reusable functions and middleware to handle various functionalities. This approach enhances maintainability and scalability, as functions and middleware can be independently developed, tested, and reused across different parts of the application.
 
 #### TypeScript Integration
 TypeScript is used throughout the project to provide static typing. This helps catch errors early in the development process, reducing the likelihood of runtime errors. TypeScript's strong typing system improves code readability and makes it easier for developers to understand the data flow within the application.
@@ -94,10 +94,10 @@ Enhancing error handling mechanisms is essential for providing a smooth user exp
 - **Error Reporting**: Integrating tools for real-time error reporting and alerting to proactively address issues as they arise.
 
 ### Improved Design
-We aim to continually improve the application's design to enhance user experience:
+We aim to continually improve the application's infrastructure to enhance performance and user satisfaction:
 
-- **API Design**: Regularly updating the API based on best practices and user feedback to ensure ease of use and maintainability.
-- **Documentation**: Providing comprehensive API documentation to help developers understand and use the API effectively.
+- **Caching**: Implementing caching mechanisms to reduce response times and improve the overall performance of the application.
+- **Advanced Technologies**: Considering the use of advanced technologies such as AWS Lambda for serverless computing, message queues for handling asynchronous tasks, and Pub/Sub for real-time updates.
 
 ### Login/Logout Functionality
 Implementing a secure login/logout functionality is crucial for managing user sessions:
