@@ -1,0 +1,28 @@
+### ---------------- Create Session ----------------
+post http://localhost:8080/session/new-session
+content-type: application/json
+db192eh193rg7234gf: cn1293rh21038dh0293hrt0f92hc
+
+{   
+    
+}
+
+
+### ---------------- Spin ----------------
+post http://localhost:8080/session/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwNTY0MjQ2LWMzMGMtNGJkYy04ZTUyLTQ4M2NjZjE2OWUyNSIsImlhdCI6MTcyMjU5MTUwNCwiZXhwIjoxNzIyNTkxNTA3fQ.zFgZcMDd1eCeHqeT_q8uvg80Qec_-7s3xaWD7pWL03o/new-spin
+content-type: application/json
+db192eh193rg7234gf: cn1293rh21038dh0293hrt0f92hc
+
+{   
+    
+}
+
+### ---------------- Cash Out ----------------
+post http://localhost:8080/session/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyNjNlMmQ1LWUyY2QtNDJlOS1hY2EwLTBjNGU5ZGM4MTZiNyIsImlhdCI6MTcyMjU0NzE5MSwiZXhwIjoxNzIyNTQ3MTk0fQ.YkoGI9Aew8DzYtK5KfJ7dYRE8Djzf4vwpubSVl7XLng/cash-out
+content-type: application/json
+db192eh193rg7234gf: cn1293rh21038dh0293hrt0f92hc
+
+{   
+    
+}
+
