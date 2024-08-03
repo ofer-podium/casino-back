@@ -27,6 +27,7 @@ const createNewSpin = async (req: Request, res: Response,next:NextFunction) => {
             cheatApplied,
             sessionId:session.id
         });
+        
         res.locals.reward = reward;
         res.locals.spin = newSpin;
         return next();

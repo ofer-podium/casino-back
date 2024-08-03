@@ -25,7 +25,7 @@ const creatNewSession = async (req: Request, res: Response,next:NextFunction) =>
 }
 
 const updateSessionAfterSpin = async (req:Request,res:Response,next:NextFunction)=>{
-    const {session, reward} = res.locals;
+    const {session, reward,sequence,isWinningSequence} = res.locals;
         try {
             const currentCredits = session?.currentCredits - 1 + reward;
             const isActive = currentCredits > 0;
@@ -44,6 +44,14 @@ const updateSessionAfterSpin = async (req:Request,res:Response,next:NextFunction
                 currentCredits,
                 isActive
             }
+
+            res.locals.message = 'Spin created';
+            res.locals.data = {
+            reward,
+            sequence,
+            isWinningSequence,
+            currentCredits
+        }
             return next();
         } catch (error) {
             return errorHandler(res, error, 'updateSession');

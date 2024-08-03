@@ -6,7 +6,6 @@ import { errorHandler } from '../controllers/error';
 
 const inspectObtainSessionInput = (req:Request, res:Response, next:NextFunction) =>{
     try {
-      
       const schema = Joi.object({
         token: Joi.string().required(),
       }).unknown(true);
