@@ -29,8 +29,6 @@ sessionRouter.post('/:token/cash-out',
     checkIfSessionIsActive,
     cashOutSession,
     sendResponse
-
-    
 );
 
 export default sessionRouter;
