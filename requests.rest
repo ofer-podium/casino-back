@@ -1,3 +1,5 @@
+### Examples:
+
 ### ---------------- Create Session ----------------
 post http://localhost:8080/session/new-session
 content-type: application/json

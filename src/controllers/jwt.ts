@@ -1,3 +1,4 @@
+// Mainly for future use
 import jsonwebtoken from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,4 +24,5 @@ export {
     generateToken,
     verifyToken,
     decodeToken
+
 };

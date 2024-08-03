@@ -16,7 +16,7 @@ app.get('/',(req:Request,res:Response)=>{
     res.send('Health check');
 });
 
-// Auth middleware
+// Auth middleware => For future use
 app.use(validateAppToken);
 
 // Routes
